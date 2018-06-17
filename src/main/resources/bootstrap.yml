@@ -1,0 +1,47 @@
+server:
+  port: 9000
+#spring配置
+spring:
+  application:
+  #服务名称
+    name: zuul-service
+  #cloud:
+  #  config:
+  #    uri: http://localhost:8000
+  #    name: dev
+  #    label: master
+  #    username: shanbing
+  #    password: shanbing#2018_!
+    #bus:  #开启消息跟踪
+    #  trace:
+     #   enabled: true
+
+#RabbitMq
+ # rabbitmq:
+    #name: rabbitmq-hello
+    #host: 'http://111.230.154.185'
+    #port: 5672
+    #addresses: 111.230.154.185:5672
+    #username: shanbing
+   # password: 123456
+    #publisher-confirms: true    #消息回调
+    #virtual-host: /
+    #exchange: ${dev.spring.rabbitmq.exchange}
+    #routingkey: ${dev.spring.rabbitmq.routingkey}
+    #queue: ${dev.spring.rabbitmq.queue}
+
+eureka:
+  client:
+    service-url:
+     defaultZone: http://localhost:8000/eureka/      #本地
+
+#zuul 配置
+zuul:
+  routes: #路由配置
+    #inf-service: /inf/**  #自定义微服务访问路径
+    mail-service:  #定义服务名
+      service-id:  mail-service
+      path: /mail/**
+
+logging:
+  level: debug
