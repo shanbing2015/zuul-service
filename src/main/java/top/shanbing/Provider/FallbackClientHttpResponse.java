@@ -1,4 +1,4 @@
-package com.shanbing.product.product.Provider;
+package top.shanbing.Provider;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -9,6 +9,9 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 
+/**
+ * 自定义路由服务失败 fallback响应
+ */
 public class FallbackClientHttpResponse implements ClientHttpResponse{
     @Override
     public HttpStatus getStatusCode() {

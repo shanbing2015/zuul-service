@@ -1,9 +1,12 @@
-package com.shanbing.product.product.filter;
+package top.shanbing.filter;
 
 import com.netflix.zuul.ZuulFilter;
+import com.netflix.zuul.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class AccessFilter extends ZuulFilter{
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -20,7 +23,7 @@ public class AccessFilter extends ZuulFilter{
     //通过int值来定义过滤器的执行顺序，数值越小优先级越高。
     @Override
     public int filterOrder() {
-        return 0;
+        return 1;
     }
 
     //是否应该执行该过滤器，如果是false，则不执行该filter
@@ -31,16 +34,14 @@ public class AccessFilter extends ZuulFilter{
 
     @Override
     public Object run() {
-        logger.debug("过滤器:");
-        return null;
-        /*RequestContext ctx = RequestContext.getCurrentContext();
+        RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
+        String token = request.getParameter("token");// 获取请求的参数
+        logger.info("--->>> Filter {},{},{}", request.getMethod(), request.getRequestURL().toString(),token);
 
-        String prefilter01 = request.getParameter("prefilter01");
-        System.out.println("执行pre01Filter .....prefilter01=" + prefilter01  );
 
         //如果用户名和密码都正确，则继续执行下一个filter
-        if("true".equals(prefilter01) ){
+        if("true".equals("true") ){
             ctx.setSendZuulResponse(true);//会进行路由，也就是会调用api服务提供者
             ctx.setResponseStatusCode(200);
             ctx.set("isOK",true);//可以把一些值放到ctx中，便于后面的filter获取使用
@@ -49,8 +50,8 @@ public class AccessFilter extends ZuulFilter{
             ctx.setResponseStatusCode(401);
             ctx.set("isOK",false);//可以把一些值放到ctx中，便于后面的filter获取使用
             //返回内容给客户端
-            ctx.setResponseBody("{\"result\":\"pre01Filter auth not correct!\"}");// 返回错误内容
+            ctx.setResponseBody("{\"result\":\"token is empty\"}");// 返回错误内容
         }
-        return null;*/
+        return null;
     }
 }

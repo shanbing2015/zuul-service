@@ -1,4 +1,4 @@
-package com.shanbing.product.product.filter;
+package top.shanbing.filter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,5 +19,10 @@ public class FilterConfiguration {
     @Bean
     public AccessFilter accessFilter(){
         return new AccessFilter();
+    }
+
+    @Bean
+    public ErrorFilter errorFilter(){
+        return new ErrorFilter();
     }
 }

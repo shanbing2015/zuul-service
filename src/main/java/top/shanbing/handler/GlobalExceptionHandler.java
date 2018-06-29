@@ -1,6 +1,6 @@
-package com.shanbing.product.product.handler;
+package top.shanbing.handler;
 
-import com.shanbing.product.product.result.JsonResult;
+import top.shanbing.result.JsonResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 系统全局异常
+ */
 @ControllerAdvice
 public class GlobalExceptionHandler {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());

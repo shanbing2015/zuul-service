@@ -1,0 +1,55 @@
+test: GitHubUpdate
+
+spring:
+  #数据库配置
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://120.79.223.130:3306/test_db?characterEncoding=utf8&useSSL=false
+    username: test
+    password: 123456
+  # Number of ms to wait before throwing an exception if no connection is available.
+    tomcat:
+      max-wait: 10000
+    # Maximum number of active connections that can be allocated from this pool at the same time.
+      max-active: 200
+      validation-query: "SELECT 1"
+      test-on-borrow: true
+      initial-size: 1
+
+
+  transaction:
+      rollback-on-commit-failure: true
+
+
+  #redis 配置
+  redis:
+      database: 0
+      # server host
+      host: 120.79.223.130
+      # server password
+      #password: U8dsPek_3RxiY9m2Lf7V5cN6T
+      #connection port
+      port: 6379
+      # pool settings ...
+      pool:
+        max-idle: 8
+        min-idle: 0
+        max-active: 8
+        max-wait: -1
+
+mybatis:
+  mapperLocations: classpath*:/mapper/*.xml
+
+eureka:
+  client:
+    service-url:
+     defaultZone: http://localhost:8000/eureka/      #本地
+  #instance:
+  #  prefer-ip-address: true #将自己IP注册到注册中心
+
+
+#logback 日志文件路径配置
+logPath: /home/shanbing/logs/service/
+
+
+
