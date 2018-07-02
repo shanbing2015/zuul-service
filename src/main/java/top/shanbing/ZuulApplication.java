@@ -14,9 +14,9 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @EnableZuulProxy    //声明zuul代理
 @EnableEurekaClient
 @EnableHystrixDashboard
-public class ZuulServiceApplication {
+public class ZuulApplication {
     public static void main(String[] args) {
-        new SpringApplicationBuilder(ZuulServiceApplication.class).web(true).run(args);
+        new SpringApplicationBuilder(ZuulApplication.class).web(true).run(args);
     }
 
 }

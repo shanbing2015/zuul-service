@@ -5,17 +5,16 @@ spring:
   application:
   #服务名称
     name: zuul-service
-  #cloud:
-  #  config:
-  #    uri: http://localhost:8000
-  #    name: dev
-  #    label: master
-  #    username: shanbing
-  #    password: shanbing#2018_!
+  cloud:
+    config:
+      uri: http://localhost:9100
+      profile: dev
+      label: master
+      #username: shanbing
+      #password: shanbing#2018_!
     #bus:  #开启消息跟踪
     #  trace:
      #   enabled: true
-  cloud:
     loadbalancer:
       retry:  #retry 启动负载均衡的重试机制
         enabled: true
