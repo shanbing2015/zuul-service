@@ -19,6 +19,8 @@ spring:
     loadbalancer:
       retry:  #retry 启动负载均衡的重试机制
         enabled: true
+  webservices:
+    path: test
 
 #RabbitMq
  # rabbitmq:
@@ -52,13 +54,14 @@ zuul:
     connect-timeout-millis: 60000
   retryable: true #开启重试 据说在Brixton.SR5版的spring cloud中该配置默认是true，结果在Dalston.SR1中看到的是false
   routes: #路由配置
-    #inf-service: /inf/** #自定义微访服务问路 径
+    #inf-service: /inf/** #自定义微访服务问路径
     mail-service:  #定义服务名
       service-id:  mail-service
       path: /mail/**
     eureka-service:
       service-id: eureka-service
-      path: /eureka/**
+      path: /eurekaService/**
+      sensitiveHeaders: Cookie,Set-Cookie
     test-service:
       service-id: test-service
       path: /test/**
@@ -88,3 +91,9 @@ hystrix:
             timeoutInMilliseconds: 5000  #断路器的超时时间: 当(连接时间+等待时间)* 重试次数 小于熔断时间 不触发
 logging:
   level: debug
+
+
+#业务配置
+product:
+  rateLimit:  #限流过滤器
+    shouldFilter: true  #开启

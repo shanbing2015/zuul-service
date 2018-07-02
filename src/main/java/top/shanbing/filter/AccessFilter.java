@@ -5,9 +5,11 @@ import com.netflix.zuul.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
+@Component
 public class AccessFilter extends ZuulFilter{
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -23,7 +25,7 @@ public class AccessFilter extends ZuulFilter{
     //通过int值来定义过滤器的执行顺序，数值越小优先级越高。
     @Override
     public int filterOrder() {
-        return 1;
+        return 10;
     }
 
     //是否应该执行该过滤器，如果是false，则不执行该filter

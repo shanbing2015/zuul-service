@@ -7,9 +7,9 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 
-@Configuration
+//@Configuration
 public class FilterConfiguration {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    /*private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostConstruct
     public void init(){
@@ -19,10 +19,15 @@ public class FilterConfiguration {
     @Bean
     public AccessFilter accessFilter(){
         return new AccessFilter();
-    }
+    }*/
 
-    @Bean
+   /* @Bean
     public ErrorFilter errorFilter(){
         return new ErrorFilter();
-    }
+    }*/
+
+    /*@Bean
+    public RateLimitZuulFilter rateLimitZuulFilter(){
+        return new
+    }*/
 }
