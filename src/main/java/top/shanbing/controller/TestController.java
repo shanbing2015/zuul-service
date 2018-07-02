@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 @RestController
 public class TestController {
 
-    @RequestMapping("/hello")
+    @RequestMapping("/")
     public String hello(){
         String datetime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(LocalDateTime.now());
         System.out.println(datetime);
