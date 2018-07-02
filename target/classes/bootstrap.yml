@@ -15,11 +15,6 @@ spring:
     #bus:  #开启消息跟踪
     #  trace:
      #   enabled: true
-    loadbalancer:
-      retry:  #retry 启动负载均衡的重试机制
-        enabled: true
-  webservices:
-    path: test
 
 #RabbitMq
  # rabbitmq:
@@ -35,64 +30,3 @@ spring:
     #routingkey: ${dev.spring.rabbitmq.routingkey}
     #queue: ${dev.spring.rabbitmq.queue}
 
-eureka:
-  instance:
-      preferIpAddress: true  #使用IP而不是主机名注册
-      instance-id: ${spring.cloud.client.ipAddress}:${server.port}
-  client:
-    service-url:
-      defaultZone: http://shanbing:top@localhost:9100/eureka/
-
-#zuul 配置
-zuul:
-  max:
-    host:
-      connections: 500
-  host:
-    socket-timeout-millis: 60000
-    connect-timeout-millis: 60000
-  retryable: true #开启重试 据说在Brixton.SR5版的spring cloud中该配置默认是true，结果在Dalston.SR1中看到的是false
-  routes: #路由配置
-    #inf-service: /inf/** #自定义微访服务问路径
-    mail-service:  #定义服务名
-      service-id:  mail-service
-      path: /mail/**
-    eureka-service:
-      service-id: eureka-service
-      path: /eurekaService/**
-      sensitiveHeaders: Cookie,Set-Cookie
-    test-service:
-      service-id: test-service
-      path: /test/**
-      retryable: true #服务重试机制
-
-ribbon:
-  ReadTimeout: 3000
-  ConnectTimeout: 1000
-  MaxAutoRetries: 1 #对当前实例的重试次数(首先对当前进行重试,失败切换实例)
-  MaxAutoRetriesNextServer: 1 #切换实例的重试次数（切换后失败，按照当前实例进行重试次数。若失败再次切换）
-  OkToRetryOnAllOperations: true #所有操作请求进行重试
-  eureka:
-    enabled: true
-
-#hystrix dashboard的信息收集频率，默认500毫秒
-hystrix:
-  stream:
-    dashboard:
-      intervalInMilliseconds: 5000
-  command:  #timeout config
-    default:
-      execution:
-        timeout:
-          enabled: true
-        isolation:
-          thread:
-            timeoutInMilliseconds: 5000  #断路器的超时时间: 当(连接时间+等待时间)* 重试次数 小于熔断时间 不触发
-logging:
-  level: debug
-
-
-#业务配置
-product:
-  rateLimit:  #限流过滤器
-    shouldFilter: true  #开启
